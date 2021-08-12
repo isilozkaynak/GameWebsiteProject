@@ -32,29 +32,51 @@ namespace ConsoleUI
         private static void ProductDetailDTOTest()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetProductDetails())
+            var result = productManager.GetProductDetails();
+            if (result.Success)
             {
-                Console.WriteLine(product.ProductName + " -- " + product.CategoryId 
-                    + " -- " + product.CategoryName);
+                Console.WriteLine(result.Message);
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + " -- " + product.CategoryId
+                        + " -- " + product.CategoryName);
+                }
             }
         }
 
         private static void ProductTest()
         {
-            Console.WriteLine("Ürünlerden fiyatı 50-70 arasını listeleme: ");
+           /* Console.WriteLine("Ürünlerden fiyatı 50-70 arasını listeleme: ");
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetByUnitPrice(50, 70))
+
+            var result = productManager.GetByUnitPrice(50, 70);
+            
+            if (result.Success)
             {
-                Console.WriteLine(product.ProductName);
-            }
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName);
+                }
+            } */
+
+            
 
             Console.WriteLine("Tüm ürünlerin bilgilerini listeleme: ");
             ProductManager productManager2 = new ProductManager(new EfProductDal());
-            foreach (var product in productManager2.GetAll())
+            var resultGetAll = productManager2.GetAll();
+            if (resultGetAll.Success)
             {
-                Console.WriteLine("\nid: " + product.ProductId + "\nname: " + product.ProductName
-                    + "\nunit price: " + product.UnitPrice + "\ncategory id: " + product.CategoryId);
+                foreach (var product in resultGetAll.Data)
+                {
+                    Console.WriteLine("\nid: " + product.ProductId + "\nname: " + product.ProductName
+                        + "\nunit price: " + product.UnitPrice + "\ncategory id: " + product.CategoryId);
+                }
             }
+            else
+            {
+                Console.WriteLine(resultGetAll.Message);
+            }
+            
 
             /*Console.WriteLine("Add new product: ");
             ProductManager productManager3 = new ProductManager(new EfProductDal());
