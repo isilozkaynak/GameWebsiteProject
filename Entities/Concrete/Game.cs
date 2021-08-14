@@ -10,5 +10,6 @@ namespace Entities.Concrete
         public int GameId { get; set; }
         public string Descriptions { get; set; }
         public DateTime ReleaseDate { get; set; }
+        public string GameName { get; set; }
     }
 }

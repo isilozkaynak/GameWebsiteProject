@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -15,41 +18,45 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
-        public List<Category> GetAll()
+        public IDataResult<List<Category>> GetAll()
         {
-            return _categoryDal.GetAll();
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.CategoriesListed);
         }
 
-        public Category GetByCategoryId(int id)
+        public IDataResult<Category> GetByCategoryId(int id)
         {
-            return _categoryDal.Get(c => c.CategoryId == id);
+            return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == id));
         }
 
-        public Category GetByCategoryName(string name)
+        public IDataResult<Category> GetByCategoryName(string name)
         {
-            return _categoryDal.Get(c => c.CategoryName == name);
+             return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryName == name));
         }
 
-        public void Insert(Category category)
+        public IResult Insert(Category category)
         {
             if (category.CategoryName.Length >= 2)
             {
                 _categoryDal.Add(category);
+                return new SuccessResult(Messages.CategoryAdded);
             }
             else
             {
-                throw new Exception("Not a valid format!!!");
+                return new ErrorResult(Messages.CategoryNameInvalid);
             }
         }
 
-        public void Delete(Category category)
+        public IResult Delete(Category category)
         {
             _categoryDal.Delete(category);
+            return new SuccessResult(Messages.CategoryDeleted);
+
         }
 
-        public void Update(Category category)
+        public IResult Update(Category category)
         {
             _categoryDal.Update(category);
+            return new SuccessResult(Messages.CategoryUpdated);
         }
     }
 }
