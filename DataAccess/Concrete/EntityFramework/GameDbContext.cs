@@ -19,6 +19,5 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Order> Orders { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Sale> Sales { get; set; }
     }
 }

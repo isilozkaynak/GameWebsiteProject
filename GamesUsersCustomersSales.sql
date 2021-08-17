@@ -28,4 +28,15 @@ CREATE TABLE Sales(
 	FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)
 	);
 
+	DROP TABLE Sales;
 
+	INSERT INTO Games(Descriptions, ReleaseDate, GameName) 
+	VALUES('this is a game', 2021-02-03, 'Outlast');
+	
+	INSERT INTO Customers(UserId, CompanyName, CustomerName)
+	VALUES (1, 'Özkaynak', 'Işıl');
+
+	INSERT INTO Users (FirstName, LastName, Email, Password)
+	VALUES('Işıl', 'Özkaynak', 'isil@gmail.com', '123456');
+
+	INSERT INTO Sales(GameId, CustomerId) VALUES(1,1);

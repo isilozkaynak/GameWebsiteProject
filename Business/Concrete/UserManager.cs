@@ -43,7 +43,7 @@ namespace Business.Concrete
             }
             else
             {
-                return new ErrorResult(Messages.UserNameInvalid)
+                return new ErrorResult(Messages.UserNameInvalid);
             }
         }
 

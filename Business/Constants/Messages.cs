@@ -42,13 +42,6 @@ namespace Business.Constants
         public static string OrderNameInvalid = "Sipariş ismi geçersiz.";
         public static string OrdersListed = "Siparişler Listelendi.";
 
-        //Sale
-        public static string SaleAdded = "Satış eklendi.";
-        public static string SaleDeleted = "Sipariş silindi";
-        public static string SaleUpdated = "Sipariş güncellendi.";
-        public static string SaleNameInvalid = "Sipariş ismi geçersiz.";
-        public static string SalesListed = "Siparişler Listelendi.";
-
         //User
         public static string UserAdded = "Kullanıcı eklendi.";
         public static string UserDeleted = "Kullanıcı silindi";
