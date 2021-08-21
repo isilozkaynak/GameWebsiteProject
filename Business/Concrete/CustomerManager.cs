@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -39,17 +41,13 @@ namespace Business.Concrete
             return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerName == name));
         }
 
+
+        [ValidationAspect(typeof(CustomerValidator))]
         public IResult Insert(Customer customer)
         {
-            if (customer.CustomerName.Length>2)
-            {
                 _customerDal.Add(customer);
                 return new SuccessResult(Messages.CustomerAdded);
-            }
-            else
-            {
-                return new ErrorResult(Messages.CustomerNameInvalid);
-            }
+
         }
 
         public IResult Update(Customer customer)
