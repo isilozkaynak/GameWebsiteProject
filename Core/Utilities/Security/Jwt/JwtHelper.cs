@@ -11,9 +11,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-
-
-
 namespace Core.Utilities.Security.Jwt
 {
     public class JwtHelper : ITokenHelper
@@ -21,6 +18,7 @@ namespace Core.Utilities.Security.Jwt
         public IConfiguration Configuration { get; }
         private TokenOptions _tokenOptions;
         private DateTime _accessTokenExpiration;
+        public JwtHelper(IConfiguration configuration)
         {
             Configuration = configuration;
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -68,6 +66,4 @@ namespace Core.Utilities.Security.Jwt
             return claims;
         }
     }
-
-
 }
