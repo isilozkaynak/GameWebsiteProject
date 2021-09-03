@@ -35,7 +35,7 @@ namespace Business.Concrete
         [PerformanceAspect(5)]
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour==17)
+            if (DateTime.Now.Hour==23)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -45,10 +45,16 @@ namespace Business.Concrete
             }
         }
 
+        public IDataResult<List<Product>> GetAllByCategoryId(int id)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
+        }
+
         public IDataResult<Product> GetByProductId(int id)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.CategoryId == id));
         }
+
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
