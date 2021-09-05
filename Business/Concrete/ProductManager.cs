@@ -50,6 +50,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
         }
 
+        public IDataResult<List<Product>> GetAllByGameId(int id)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.GameId == id));
+        }
+
         public IDataResult<Product> GetByProductId(int id)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.CategoryId == id));
