@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         {
 
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
 
 
             var result = _productService.GetAll();
