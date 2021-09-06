@@ -92,7 +92,7 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<List<ProductImage>>(result.Message);
             }
-            return new SuccessDataResult<List<ProductImage>>(productId.ToString());
+            return new SuccessDataResult<List<ProductImage>>(CheckIfProductImageNull(productId).Data);
         }
 
 
@@ -112,7 +112,7 @@ namespace Business.Concrete
             try
             {
                 string path = @"\images\DefaultImage.jpg";
-                var result = _productImageDal.GetAll(c => c.ProductId == id).Any();
+                var result = _productImageDal.GetAll(p => p.ProductId == id).Any();
                 if (!result)
                 {
                     List<ProductImage> productImage = new List<ProductImage>();
@@ -124,7 +124,7 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<List<ProductImage>>(exception.Message);
             }
-            return new SuccessDataResult<List<ProductImage>>(_productImageDal.GetAll(c => c.ProductId == id));
+            return new SuccessDataResult<List<ProductImage>>(_productImageDal.GetAll(p => p.ProductId == id));
         }
     }
 }
