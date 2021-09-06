@@ -15,5 +15,6 @@ namespace Entities.DTOs
         public string CategoryName { get; set; }
         public decimal UnitPrice { get; set; }
         public DateTime ReleaseDate { get; set; }
+        public string ImagePath { get; set; }
     }
 }
