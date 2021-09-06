@@ -92,7 +92,7 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<List<ProductImage>>(result.Message);
             }
-            return new SuccessDataResult<List<ProductImage>>(productId.ToString());
+            return new SuccessDataResult<List<ProductImage>>(CheckIfProductImageNull(productId).Data);
         }
 
 
