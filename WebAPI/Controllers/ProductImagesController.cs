@@ -39,6 +39,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("getimagesbyproductid")]
         public IActionResult GetImagesByproductId([FromForm(Name = ("ProductId"))] int productId)
         {
@@ -49,6 +50,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpPost("add")]
         public IActionResult Add([FromForm(Name = ("Image"))] IFormFile file, [FromForm] ProductImage productImage)
         {

@@ -49,5 +49,32 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+
+        public List<ProductDetailDto> GetProductDetailsById(int id)
+        {
+            using (GameDbContext context = new GameDbContext())
+            {
+                var result = from p in context.Products
+                             join c in context.Categories
+                                 on p.CategoryId equals c.CategoryId
+                             join g in context.Games
+                                on p.GameId equals g.GameId
+                            join pI in context.ProductImages
+                                on p.ProductId equals pI.ProductId
+                             select new ProductDetailDto
+                             {
+                                 ProductId = p.ProductId,
+                                 ProductName = p.ProductName,
+                                 CategoryId = c.CategoryId,
+                                 CategoryName = c.CategoryName,
+                                 UnitPrice = p.UnitPrice,
+                                 GameName = g.GameName,
+                                 ReleaseDate = p.ReleaseDate,
+                                 ImagePath=pI.ImagePath
+                             };
+
+                return result.ToList();
+            }
+        }
     }
 }

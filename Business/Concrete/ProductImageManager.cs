@@ -85,22 +85,22 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductImageUpdated);
         }
 
-        public IDataResult<List<ProductImage>> GetImagesByProductId(int pruductId)
+        public IDataResult<List<ProductImage>> GetImagesByProductId(int productId)
         {
-            IResult result = BusinessRules.Run(CheckIfProductImageNull(pruductId));
+            IResult result = BusinessRules.Run(CheckIfProductImageNull(productId));
             if (result != null)
             {
                 return new ErrorDataResult<List<ProductImage>>(result.Message);
             }
-            return new SuccessDataResult<List<ProductImage>>(CheckIfProductImageNull(pruductId).Data);
+            return new SuccessDataResult<List<ProductImage>>(productId.ToString());
         }
 
 
         //businessrule codes
-        private IResult CheckImageLimitExceeded(int pruductId)
+        private IResult CheckImageLimitExceeded(int productId)
         {
-            var pruductImageCount = _productImageDal.GetAll(p => p.ProductId == pruductId).Count;
-            if (pruductImageCount >= 5)
+            var productImageCount = _productImageDal.GetAll(p => p.ProductId == productId).Count;
+            if (productImageCount >= 5)
             {
                 return new ErrorResult(Messages.ProductImageLimitExceeded);
             }
