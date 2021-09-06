@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (GameDbContext context = new GameDbContext())
             {
-                var result = from p in context.Products
+              /*  var result = from p in context.Products
                              join c in context.Categories
                              on p.CategoryId equals c.CategoryId
                              select new ProductDetailDto //hangi kolonları istediğimi yazıyorum
@@ -27,6 +27,23 @@ namespace DataAccess.Concrete.EntityFramework
                                  CategoryId = c.CategoryId,
                                  CategoryName = c.CategoryName,
                                  UnitPrice = p.UnitPrice
+                             }; */
+
+
+                var result = from p in context.Products
+                             join c in context.Categories
+                                 on p.CategoryId equals c.CategoryId
+                             join g in context.Games
+                                on p.GameId equals g.GameId
+                             select new ProductDetailDto
+                             {
+                                 ProductId = p.ProductId,
+                                 ProductName = p.ProductName,
+                                 CategoryId = c.CategoryId,
+                                 CategoryName = c.CategoryName,
+                                 UnitPrice = p.UnitPrice,
+                                 GameName=g.GameName,
+                                 ReleaseDate=p.ReleaseDate
                              };
 
                 return result.ToList();

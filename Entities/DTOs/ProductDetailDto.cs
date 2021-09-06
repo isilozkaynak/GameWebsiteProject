@@ -10,8 +10,10 @@ namespace Entities.DTOs
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
+        public string GameName { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public decimal UnitPrice { get; set; }
+        public DateTime ReleaseDate { get; set; }
     }
 }
