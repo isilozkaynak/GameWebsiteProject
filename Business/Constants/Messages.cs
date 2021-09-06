@@ -59,6 +59,10 @@ namespace Business.Constants
         public static string AuthorizationDenied = "Yetkiniz yok";
         public static string ProductNameAlreadyExists = "Ürün ismi zaten mevcut";
 
-
+        public static string ProductImageLimitExceeded { get; internal set; }
+        public static string ProductImageUpdated { get; internal set; }
+        public static string ProductImageDeleted { get; internal set; }
+        public static string ProductImageAdded { get; internal set; }
+        public static string ProductImagesListed { get; internal set; }
     }
 }
