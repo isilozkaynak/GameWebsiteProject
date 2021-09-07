@@ -13,13 +13,127 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+
 
 namespace Business.Concrete
 {
     public class ProductImageManager : IProductImageService
     {
+        IProductImageDal _productImageDal;
 
+        public ProductImageManager(IProductImageDal productImageDal)
+        {
+            _productImageDal = productImageDal;
+        }
+
+        //[SecuredOperation("admin")]
+        //[CacheRemoveAspect("IProductImageService.Get")]
+        [ValidationAspect(typeof(ProductImageValidator))]
+        public IResult Add(ProductImage productImage, IFormFile file)
+        {
+            IResult result = BusinessRules.Run(
+                CheckIfImageLimitExpired(productImage.ProductId),
+                CheckIfImageExtensionValid(file)
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
+            productImage.ImagePath = FileHelper.Add(file);
+            productImage.UploadDate = DateTime.Now;
+            _productImageDal.Add(productImage);
+            return new SuccessResult();
+        }
+
+        //[SecuredOperation("admin")]
+        //[CacheRemoveAspect("IProductImageService.Get")]
+        public IResult Delete(ProductImage productImage)
+        {
+            IResult result = BusinessRules.Run(
+                CheckIfImageExists(productImage.ProductImageId)
+                );
+            if (result != null)
+            {
+                return result;
+            }
+
+
+            var image = _productImageDal.Get(p => p.ProductImageId == productImage.ProductImageId);
+            if (image == null)
+            {
+                return new ErrorResult(Messages.ImageNotFound);
+            }
+            FileHelper.Delete(image.ImagePath);
+            _productImageDal.Delete(productImage);
+            return new SuccessResult(Messages.SuccessImageDeleted);
+        }
+
+        //[SecuredOperation("admin")]
+        //[CacheRemoveAspect("IProductImageService.Get")]
+        public IResult DeleteByProductId(int productId)
+        {
+            var result = _productImageDal.GetAll(p => p.ProductId == productId);
+            if (result.Any())
+            {
+                foreach (var productImage in result)
+                {
+                    Delete(productImage);
+                }
+                return new SuccessResult(Messages.AllImagesDeleted);
+            }
+            return new ErrorResult(Messages.CarHaveNoImage);
+        }
+
+        //[CacheAspect]
+        public IDataResult<List<ProductImage>> GetAll()
+        {
+            return new SuccessDataResult<List<ProductImage>>(_productImageDal.GetAll());
+        }
+
+        //[CacheAspect]
+        public IDataResult<ProductImage> Get(int id)
+        {
+            return new SuccessDataResult<ProductImage>(_productImageDal.Get(p => p.ProductImageId == id));
+        }
+        //[CacheAspect]
+        public IDataResult<List<ProductImage>> GetImagesById(int id)
+        {
+            return new SuccessDataResult<List<ProductImage>>(_productImageDal.GetAll(p => p.ProductId == id).ToList());
+        }
+
+        private IResult CheckIfImageLimitExpired(int productId)
+        {
+            int result = _productImageDal.GetAll(p => p.ProductId == productId).Count;
+            if (result >= 4)
+            {
+                return new ErrorResult(Messages.OverLimit);
+            }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfImageExtensionValid(IFormFile file)
+        {
+            bool isValidFileExtension = Messages.ValidImageFileTypes.Any(t => t == Path.GetExtension(file.FileName).ToUpper());
+            if (!isValidFileExtension)
+            {
+                return new ErrorResult(Messages.InvalidImageExtension);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfImageExists(int id)
+        {
+            if (!_productImageDal.IsExist(id))
+            {
+                return new SuccessResult();
+            }
+
+            return new ErrorResult(Messages.ProductImageMustBeExists);
+        }
+        /*
         IProductImageDal _productImageDal;
 
         public ProductImageManager(IProductImageDal productImageDal)
@@ -34,7 +148,7 @@ namespace Business.Concrete
             IResult result = BusinessRules.Run(CheckImageLimitExceeded(productImage.ProductId));
             if (result != null)
             {
-                return result;
+                return new ErrorResult(Messages.ImageLimitExceded);//return result;
             }
 
             productImage.ImagePath = FileHelper.Add(file);
@@ -66,7 +180,12 @@ namespace Business.Concrete
 
         public IDataResult<ProductImage> GetById(int id)
         {
-            return new SuccessDataResult<ProductImage>(_productImageDal.Get(c => c.ProductId == id));
+            IResult result = BusinessRules.Run(CheckIfProductImageNull(id));
+            if (result != null)
+            {
+                return new ErrorDataResult<ProductImage>(result.Message);
+            }
+            return new SuccessDataResult<ProductImage>(_productImageDal.Get(p => p.ProductId == id));
         }
 
         public IResult Update(IFormFile file, ProductImage productImage)
@@ -125,6 +244,6 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<ProductImage>>(exception.Message);
             }
             return new SuccessDataResult<List<ProductImage>>(_productImageDal.GetAll(p => p.ProductId == id));
-        }
+        } */
     }
 }

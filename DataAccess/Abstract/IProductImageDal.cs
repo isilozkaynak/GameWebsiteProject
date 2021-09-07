@@ -8,5 +8,6 @@ namespace DataAccess.Abstract
 {
     public interface IProductImageDal : IEntityRepository<ProductImage>
     {
+        bool IsExist(int id);
     }
 }

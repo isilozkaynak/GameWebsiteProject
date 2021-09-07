@@ -16,5 +16,7 @@ namespace Entities.DTOs
         public decimal UnitPrice { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string ImagePath { get; set; }
+        public string Descriptions { get; set;
+        public string DescriptionProduct { get; set; }
     }
 }

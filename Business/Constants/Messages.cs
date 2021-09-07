@@ -64,5 +64,16 @@ namespace Business.Constants
         public static string ProductImageDeleted = "Resim silindi.";
         public static string ProductImageAdded = "Resim eklendi.";
         public static string ProductImagesListed = "Resim listelendi.";
+
+        public static string ImageLimitExceded = "REsim sınırı aşıldı.";
+
+        public static string ProductImageMustBeExists { get; internal set; }
+        public static string InvalidImageExtension { get; internal set; }
+        public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
+        public static string OverLimit { get; internal set; }
+        public static string ImageNotFound { get; internal set; }
+        public static string SuccessImageDeleted { get; internal set; }
+        public static string AllImagesDeleted { get; internal set; }
+        public static string CarHaveNoImage { get; internal set; }
     }
 }

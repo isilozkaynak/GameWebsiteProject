@@ -43,7 +43,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CategoryName = c.CategoryName,
                                  UnitPrice = p.UnitPrice,
                                  GameName=g.GameName,
-                                 ReleaseDate=p.ReleaseDate
+                                 ReleaseDate=p.ReleaseDate,
+                                 Descriptions=g.Descriptions
                              };
 
                 return result.ToList();
@@ -70,7 +71,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  UnitPrice = p.UnitPrice,
                                  GameName = g.GameName,
                                  ReleaseDate = p.ReleaseDate,
-                                 ImagePath=pI.ImagePath
+                                 ImagePath=pI.ImagePath,
+                                 Descriptions = g.Descriptions
                              };
 
                 return result.ToList();
