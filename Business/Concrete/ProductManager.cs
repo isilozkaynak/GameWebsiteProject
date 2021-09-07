@@ -71,9 +71,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(), Messages.ProductsListed);
         }
 
-        public IDataResult<List<ProductDetailDto>> GetProductDetailsById(int id)
+        public IDataResult<List<ProductDetailDto>> GetProductDetailsByProductId(int productId)
         {
-            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetailsById(id));
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails(p => p.ProductId == productId));
         }
 
         [SecuredOperation("product.add, admin")]

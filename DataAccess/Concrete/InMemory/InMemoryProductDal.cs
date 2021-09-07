@@ -59,6 +59,11 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<ProductDetailDto> GetProductDetails(Expression<Func<ProductDetailDto, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<ProductDetailDto> GetProductDetailsById(int id)
         {
             throw new NotImplementedException();

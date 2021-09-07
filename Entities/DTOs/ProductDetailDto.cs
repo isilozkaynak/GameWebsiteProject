@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.Entities;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,5 +19,6 @@ namespace Entities.DTOs
         public string ImagePath { get; set; }
         public string Descriptions { get; set; } 
         public string DescriptionProduct { get; set; }
+        public List<ProductImage> ProductImage { get; set; }
     }
 }

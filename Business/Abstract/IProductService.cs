@@ -13,7 +13,7 @@ namespace Business.Abstract
         IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max);
 
         IDataResult<List<ProductDetailDto>> GetProductDetails();
-        IDataResult<List<ProductDetailDto>> GetProductDetailsById(int id);
+        IDataResult<List<ProductDetailDto>> GetProductDetailsByProductId(int productId);
 
         IDataResult<Product> GetByProductId(int id);
 

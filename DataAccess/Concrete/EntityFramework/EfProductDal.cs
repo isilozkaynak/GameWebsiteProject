@@ -13,23 +13,10 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductDal : EfEntityRepositoryBase<Product, GameDbContext>, IProductDal
     {
-        public List<ProductDetailDto> GetProductDetails()
+        public List<ProductDetailDto> GetProductDetails(Expression<Func<ProductDetailDto, bool>> filter = null)
         {
             using (GameDbContext context = new GameDbContext())
             {
-              /*  var result = from p in context.Products
-                             join c in context.Categories
-                             on p.CategoryId equals c.CategoryId
-                             select new ProductDetailDto //hangi kolonları istediğimi yazıyorum
-                             {
-                                 ProductId = p.ProductId,
-                                 ProductName = p.ProductName,
-                                 CategoryId = c.CategoryId,
-                                 CategoryName = c.CategoryName,
-                                 UnitPrice = p.UnitPrice
-                             }; */
-
-
                 var result = from p in context.Products
                              join c in context.Categories
                                  on p.CategoryId equals c.CategoryId
@@ -44,13 +31,20 @@ namespace DataAccess.Concrete.EntityFramework
                                  UnitPrice = p.UnitPrice,
                                  GameName=g.GameName,
                                  ReleaseDate=p.ReleaseDate,
-                                 Descriptions=g.Descriptions
+                                 Descriptions=g.Descriptions,
+                                 ProductImage = (from i in context.ProductImages
+                                                 where (p.ProductId == i.ProductId)
+                                             select new ProductImage { ProductImageId = i.ProductImageId,
+                                                 ProductId = p.ProductId, 
+                                                 UploadDate = i.UploadDate, 
+                                                 ImagePath = i.ImagePath }).ToList()
                              };
 
-                return result.ToList();
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
 
+        /*
         public List<ProductDetailDto> GetProductDetailsById(int id)
         {
             using (GameDbContext context = new GameDbContext())
@@ -77,6 +71,6 @@ namespace DataAccess.Concrete.EntityFramework
 
                 return result.ToList();
             }
-        }
+        } */
     }
 }

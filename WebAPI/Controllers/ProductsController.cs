@@ -83,9 +83,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getproductdetailsbyproductid")]
-        public IActionResult GetProductDetailsById(int id)
+        public IActionResult GetProductDetailsByProductId(int productId)
         {
-            var result = _productService.GetProductDetailsById(id);
+            var result = _productService.GetProductDetailsByProductId(productId);
             if (result.Success)
             {
                 return Ok(result);
