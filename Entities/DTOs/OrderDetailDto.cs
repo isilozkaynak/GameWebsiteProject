@@ -18,6 +18,7 @@ namespace Entities.DTOs
         public string LastName { get; set; }
         public string Email { get; set; }
         //order
+        public int OrderId { get; set; }
         public DateTime OrderDate { get; set; }
         //product
         public int ProductId { get; set; }

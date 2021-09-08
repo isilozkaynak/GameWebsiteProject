@@ -13,7 +13,7 @@ namespace Business.Abstract
         IDataResult<Order> GetByOrderId(int id);
 
         IDataResult<List<OrderDetailDto>> GetOrderDetails();
-        IDataResult<List<OrderDetailDto>> GetOrderDetailsByProductId(int orderId);
+        IDataResult<List<OrderDetailDto>> GetOrderDetailsByOrderId(int orderId);
 
         IResult Insert(Order order);
         IResult Delete(Order order);

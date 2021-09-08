@@ -41,7 +41,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CategoryId=p.CategoryId,
                                  ProductName=p.ProductName,
                                  UnitPrice=p.UnitPrice,
-                                 GameName=g.GameName
+                                 GameName=g.GameName,
+                                 OrderId=o.OrderId
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }

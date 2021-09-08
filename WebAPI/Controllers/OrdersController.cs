@@ -85,10 +85,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getorderdetailsbyproductid")]
-        public IActionResult GetOrderDetailsByProductId(int productId)
+        [HttpGet("getorderdetailsbyorderid")]
+        public IActionResult GetOrderDetailsByOrderId(int orderId)
         {
-            var result = _orderService.GetOrderDetailsByProductId(productId);
+            var result = _orderService.GetOrderDetailsByOrderId(orderId);
             if (result.Success)
             {
                 return Ok(result);

@@ -40,9 +40,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrderDetails());
         }
 
-        public IDataResult<List<OrderDetailDto>> GetOrderDetailsByProductId(int productId)
+        public IDataResult<List<OrderDetailDto>> GetOrderDetailsByOrderId(int orderId)
         {
-            return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrderDetails(o => o.ProductId == productId));
+            return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrderDetails(o => o.OrderId == orderId));
         }
 
         public IResult Insert(Order order)
