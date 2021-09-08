@@ -45,6 +45,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrderDetails(o => o.OrderId == orderId));
         }
 
+        public IDataResult<List<OrderDetailDto>> GetOrderDetailsByProductId(int productId)
+        {
+            return new SuccessDataResult<List<OrderDetailDto>>(_orderDal.GetOrderDetails(o => o.ProductId == productId));
+        }
+
         public IResult Insert(Order order)
         {
             _orderDal.Add(order);
