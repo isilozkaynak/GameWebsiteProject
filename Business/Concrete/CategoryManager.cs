@@ -23,14 +23,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.CategoriesListed);
         }
 
-        public IDataResult<Category> GetByCategoryId(int id)
+        public IDataResult<Category> GetByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == id));
+            return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == categoryId));
         }
 
-        public IDataResult<Category> GetByCategoryName(string name)
+        public IDataResult<Category> GetByCategoryName(string categoryName)
         {
-             return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryName == name));
+             return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryName == categoryName));
         }
 
         public IResult Insert(Category category)

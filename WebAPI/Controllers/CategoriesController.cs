@@ -32,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbycategoryid")]
-        public IActionResult GetByCategoryId(int id)
+        public IActionResult GetByCategoryId(int categoryId)
         {
-            var result = _categoryService.GetByCategoryId(id);
+            var result = _categoryService.GetByCategoryId(categoryId);
             if (result.Success)
             {
                 return Ok(result);
@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbycategoryname")]
-        public IActionResult GetByCategoryName(string name)
+        public IActionResult GetByCategoryName(string categoryName)
         {
-            var result = _categoryService.GetByCategoryName(name);
+            var result = _categoryService.GetByCategoryName(categoryName);
             if (result.Success)
             {
                 return Ok(result);
