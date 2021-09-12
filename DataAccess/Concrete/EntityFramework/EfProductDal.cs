@@ -32,6 +32,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  GameName=g.GameName,
                                  ReleaseDate=p.ReleaseDate,
                                  Descriptions=g.Descriptions,
+                                 DescriptionProduct=p.DescriptionProduct,
                                  ProductImage = (from i in context.ProductImages
                                                  where (p.ProductId == i.ProductId)
                                              select new ProductImage { ProductImageId = i.ProductImageId,
@@ -43,34 +44,5 @@ namespace DataAccess.Concrete.EntityFramework
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
-
-        /*
-        public List<ProductDetailDto> GetProductDetailsById(int id)
-        {
-            using (GameDbContext context = new GameDbContext())
-            {
-                var result = from p in context.Products
-                             join c in context.Categories
-                                 on p.CategoryId equals c.CategoryId
-                             join g in context.Games
-                                on p.GameId equals g.GameId
-                            join pI in context.ProductImages
-                                on p.ProductId equals pI.ProductId
-                             select new ProductDetailDto
-                             {
-                                 ProductId = p.ProductId,
-                                 ProductName = p.ProductName,
-                                 CategoryId = c.CategoryId,
-                                 CategoryName = c.CategoryName,
-                                 UnitPrice = p.UnitPrice,
-                                 GameName = g.GameName,
-                                 ReleaseDate = p.ReleaseDate,
-                                 ImagePath=pI.ImagePath,
-                                 Descriptions = g.Descriptions
-                             };
-
-                return result.ToList();
-            }
-        } */
     }
 }
