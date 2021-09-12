@@ -55,6 +55,10 @@ namespace WebAPI
             //User
             services.AddSingleton<IUserService, UserManager>();
             services.AddSingleton<IUserDal, EfUserDal>();
+            //ProductImageManager
+            services.AddSingleton<IProductImageService, ProductImageManager>();
+            services.AddSingleton<IProductImageDal, EfProductImageDal>();
+
 
             services.AddCors();
 
