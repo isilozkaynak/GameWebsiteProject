@@ -8,12 +8,12 @@ namespace Business.Constants
     public static class Messages
     {
         //Product
-        public static string ProductAdded = "Ürün eklendi.";
-        public static string ProductDeleted = "Ürün silindi";
-        public static string ProductUpdated = "Ürün güncellendi.";
-        public static string ProductNameInvalid = "Ürün ismi geçersiz.";
+        public static string ProductAdded = "Oyun eklendi.";
+        public static string ProductDeleted = "Oyun silindi";
+        public static string ProductUpdated = "Oyun güncellendi.";
+        public static string ProductNameInvalid = "Oyun ismi geçersiz.";
         public static string MaintenanceTime = "Sistem bakımda.";
-        public static string ProductsListed = "Ürünler Listelendi.";
+        public static string ProductsListed = "Oyunlar Listelendi.";
 
         //Category
         public static string CategoryAdded = "Kategori eklendi.";
@@ -30,11 +30,11 @@ namespace Business.Constants
         public static string CustomersListed = "Müşteriler Listelendi.";
 
         //Game
-        public static string GameAdded = "Oyun eklendi.";
-        public static string GameDeleted = "Oyun silindi";
-        public static string GameUpdated = "Oyun güncellendi.";
-        public static string GameNameInvalid = "Oyun ismi geçersiz.";
-        public static string GamesListed = "Oyunlar Listelendi.";
+        public static string GameAdded = "Yayıncı eklendi.";
+        public static string GameDeleted = "Yayıncı silindi";
+        public static string GameUpdated = "Yayıncı güncellendi.";
+        public static string GameNameInvalid = "Yayıncı ismi geçersiz.";
+        public static string GamesListed = "Yayıncılar Listelendi.";
 
         //Order
         public static string OrderAdded = "Sipariş eklendi.";
@@ -65,15 +65,15 @@ namespace Business.Constants
         public static string ProductImageAdded = "Resim eklendi.";
         public static string ProductImagesListed = "Resim listelendi.";
 
-        public static string ImageLimitExceded = "REsim sınırı aşıldı.";
+        public static string ImageLimitExceded = "Resim sınırı aşıldı.";
 
-        public static string ProductImageMustBeExists { get; internal set; }
-        public static string InvalidImageExtension { get; internal set; }
+        public static string ProductImageMustBeExists = "Bir ürün resmi olmalı.";
+        public static string InvalidImageExtension = "Geçersiz resim uzantısı.";
         public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
-        public static string OverLimit { get; internal set; }
-        public static string ImageNotFound { get; internal set; }
-        public static string SuccessImageDeleted { get; internal set; }
-        public static string AllImagesDeleted { get; internal set; }
-        public static string CarHaveNoImage { get; internal set; }
+        public static string OverLimit = "Limit aşıldı.";
+        public static string ImageNotFound = "Resim bulunamadı.";
+        public static string SuccessImageDeleted = "Resim başarıyla silindi.";
+        public static string AllImagesDeleted = "Tüm resimler silindi.";
+        public static string ProductHaveNoImage = "Ürünün bir resmi yok.";
     }
 }

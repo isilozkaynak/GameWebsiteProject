@@ -11,7 +11,6 @@ namespace Core.CrossCuttingConcerns.Cashing.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
     {
-        //Adapter Pattern
         IMemoryCache _memoryCache;
 
         public MemoryCacheManager()

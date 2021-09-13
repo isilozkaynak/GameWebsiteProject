@@ -17,8 +17,8 @@ namespace DataAccess.Concrete.InMemory
         {
             _products = new List<Product>
             {
-                new Product{ ProductId=1, CategoryId=1, ProductName="laptop"},
-                new Product{ ProductId=5, CategoryId=2, ProductName="mouse"},
+                new Product{ ProductId=1, CategoryId=1, ProductName="oyun1"},
+                new Product{ ProductId=5, CategoryId=2, ProductName="oyun2"},
             };
         }
 

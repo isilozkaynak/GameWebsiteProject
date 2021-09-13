@@ -83,7 +83,7 @@ namespace Business.Concrete
                 }
                 return new SuccessResult(Messages.AllImagesDeleted);
             }
-            return new ErrorResult(Messages.CarHaveNoImage);
+            return new ErrorResult(Messages.ProductHaveNoImage);
         }
 
         //[CacheAspect]
